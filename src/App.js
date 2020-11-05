@@ -1,24 +1,53 @@
 import React, { Component } from 'react';
-import uuid from 'uuid'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 
+var randomId = require('random-id');
+ 
+// length of the id (default is 30)
+var len = 30;
+ 
+// pattern to determin how the id will be generated
+// default is aA0 it has a chance for lowercased capitals and numbers
+var pattern = 'aA0'
+ 
+
 
 class App extends Component {
   state = {
-    items: [{id: 1, title: 'wake up' }, { id: 2, title: 'make breakfast'}],
-    // id: uuid(),
+    items: [],
+    id: randomId(len, pattern),
     item: '', 
     editItem: false
   };
 
   handleChange = (e) => {
-    console.log('handle change')
+    this.setState({
+      item: e.target.value
+    })
   }
+
+
   handleSubmit = (e) => {
-    console.log('handle submit')
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item
+    };
+
+    const updatedItems = [...this.state.items, newItem]
+
+    this.setState({
+      items: updatedItems,
+      item: '',
+      id: randomId(len, pattern),
+      editItem: false
+    })
   }
+
+
+
   clearList = () => {
     console.log('clear list')
   }
@@ -48,6 +77,7 @@ class App extends Component {
             handleDelete={this.handleDelete}
             handleEdit={this.handleEdit} 
             />
+
           </div>
         </div>
       </div>
