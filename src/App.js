@@ -8,7 +8,7 @@ import TodoList from './components/TodoList'
 class App extends Component {
   state = {
     items: [{id: 1, title: 'wake up' }, { id: 2, title: 'make breakfast'}],
-    id: uuid(),
+    // id: uuid(),
     item: '', 
     editItem: false
   };
@@ -37,7 +37,7 @@ class App extends Component {
           <div className="c0l-10 mx-auto col-md-8 mt-5">
             <h3 className="text-capitalize text-center">todo input</h3>
             <TodoInput
-            item={thiis.state.item} 
+            item={this.state.item} 
             handleChange={this.handleChange} 
             handleSubmit={this.handleSubmit} 
             editItem={this.state.editItem} 
