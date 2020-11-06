@@ -22,14 +22,14 @@ class App extends Component {
     editItem: false
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       item: e.target.value
     })
   }
 
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     const newItem = {
       id: this.state.id,
@@ -49,13 +49,27 @@ class App extends Component {
 
 
   clearList = () => {
-    console.log('clear list')
+    this.setState({
+      items: []
+    })
   }
   handleDelete = (id) => {
-    console.log('handle edit')
+    const filteredItems = this.state.items.filter(item => item.id !== id)
+    this.setState({
+      items: filteredItems
+    })
   }
   handleEdit = (id) => {
-    console.log('handle edit')
+    const filteredItems = this.state.items.filter(
+      item => item.id !== id);
+    const selectedItem = this.state.items.find(
+      item => item.id === id)
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      id: id,     
+      editItem: true
+    })
   }
 
   render() { 
