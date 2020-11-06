@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 var randomId = require('random-id');
  
 // length of the id (default is 30)
@@ -91,7 +92,7 @@ class App extends Component {
             handleDelete={this.handleDelete}
             handleEdit={this.handleEdit} 
             />
-
+            <h2 className="text-center fixed-bottom mb-5">Made by <a href="https://github.com/xurshedergashboyev">Xurshed</a> with <FontAwesomeIcon icon={faHeart} className="text-danger" /></h2>
           </div>
         </div>
       </div>
